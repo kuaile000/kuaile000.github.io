@@ -16,21 +16,21 @@
   <meta name="author" content="kuaile000">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="解决 解决接口幂等问题，只需要记住一句口令”一锁、二判、三更新”，只要严格遵守这个过程，那么就可以解决并发问题。 一锁：第一步，先加锁。可以加分布式锁、或者悲观锁都可以。但是一定要是一个互斥锁！ 二判：第二步，进行幂等性判断。可以基于状态机、流水表、唯一性索引等等进行重复操作的判断。 三更新：第三步，进行数据的更新，将数据进行持久化。 三步需要严格控制顺序，确保加锁成功后进行数据查询和判断，幂等性">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://lzhnet.top/2023/10/03/hello-world/index.html">
+<meta property="og:title" content="浅谈接口幂等问题">
+<meta property="og:url" content="http://lzhnet.top/2023/05/30/%E6%B5%85%E8%B0%88%E6%8E%A5%E5%8F%A3%E5%B9%82%E7%AD%89%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="LBlog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="解决 解决接口幂等问题，只需要记住一句口令”一锁、二判、三更新”，只要严格遵守这个过程，那么就可以解决并发问题。 一锁：第一步，先加锁。可以加分布式锁、或者悲观锁都可以。但是一定要是一个互斥锁！ 二判：第二步，进行幂等性判断。可以基于状态机、流水表、唯一性索引等等进行重复操作的判断。 三更新：第三步，进行数据的更新，将数据进行持久化。 三步需要严格控制顺序，确保加锁成功后进行数据查询和判断，幂等性">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-10-03T08:47:49.717Z">
-<meta property="article:modified_time" content="2023-10-03T06:01:41.394Z">
+<meta property="article:published_time" content="2023-05-30T13:18:12.000Z">
+<meta property="article:modified_time" content="2023-10-04T08:01:06.642Z">
 <meta property="article:author" content="kuaile000">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Hello World - LBlog</title>
+  <title>浅谈接口幂等问题 - LBlog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Hello World"></span>
+            <span id="subtitle" data-typed-text="浅谈接口幂等问题"></span>
           
         </div>
 
@@ -207,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-03 16:47" pubdate>
-          October 3, 2023 pm
+        <time datetime="2023-05-30 21:18" pubdate>
+          May 30, 2023 pm
         </time>
       </span>
     
@@ -219,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          367 words
+          743 words
         
       </span>
     
@@ -230,7 +230,7 @@
         
         
         
-          4 mins
+          7 mins
         
       </span>
     
@@ -267,24 +267,41 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Hello World</h1>
+            <h1 id="seo-header">浅谈接口幂等问题</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+                <h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><ul>
+<li>解决接口幂等问题，只需要记住一句口令”一锁、二判、三更新”，只要严格遵守这个过程，那么就可以解决并发问题。<ul>
+<li>一锁：第一步，先加锁。可以加分布式锁、或者悲观锁都可以。但是一定要是一个互斥锁！</li>
+<li>二判：第二步，进行幂等性判断。可以基于状态机、流水表、唯一性索引等等进行重复操作的判断。</li>
+<li>三更新：第三步，进行数据的更新，将数据进行持久化。</li>
+<li>三步需要严格控制顺序，确保加锁成功后进行数据查询和判断，幂等性判断通过后再更新，更新结束后释放锁。</li>
+<li>以上操作需要有一个前提，那就是第一步加锁、和第二步判断的时候，需要有一个依据，这个就是幂等号了，通常需要和上游约定一个唯一ID作为幂等号。然后通过对幂等号加锁，再通过幂等号进行幂等判断即可。</li>
+</ul>
+</li>
+<li>一锁这个过程，建议使用Redis实现分布式锁，因为他是非阻塞的高效率的互斥锁。非常适合在幂等控制场景中。</li>
+<li>二判这个过程，如果有操作流水，建议基于操作流水做幂等，并将幂等号作为唯一性约束，确保唯一性。如果没有流水，那么基于状态机也是可以的。</li>
+<li>但是不管怎么样，数据库的唯一性约束都要加好，这是系统的最后一道防线。万一前面的锁失效了，这里也能控制得住不会产生脏数据。</li>
+<li>安全性欠佳做法<ul>
+<li>唯一键</li>
+<li>防重表（唯一性字段）</li>
+<li>token防重</li>
+<li>状态机</li>
+<li>乐观锁（版本号）</li>
+<li>（还可以）悲观锁（分布式锁&#x2F;for update + 判断是否符合条件 + 更新）（一锁二判三更新）</li>
+</ul>
+</li>
+</ul>
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><ul>
+<li><p>请求幂等：每次请求，如果参数一样，结果也要一样。</p>
+</li>
+<li><p>业务幂等：同一次业务请求，再拿到最终状态之后的每次请求，结果要保证一样。再没拿到最终状态之前，每一次请求需要正常执行业务逻辑，直到推进到最终状态。</p>
+</li>
+<li><p>比如，一次支付请求，如果支付返回处理中，或者系统异常等，我们需要重试，继续调用，直到他明确的返回支付成功，或者明确的无法成功的支付失败结果。</p>
+</li>
+</ul>
 
                 
               </div>
@@ -302,8 +319,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Hello World</div>
-      <div>http://lzhnet.top/2023/10/03/hello-world/</div>
+      <div>浅谈接口幂等问题</div>
+      <div>http://lzhnet.top/2023/05/30/浅谈接口幂等问题/</div>
     </div>
     <div class="license-meta">
       
@@ -315,7 +332,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>October 3, 2023</div>
+          <div>May 30, 2023</div>
         </div>
       
       
@@ -347,9 +364,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/03/%E9%97%B2%E8%B0%88Redis%E8%84%91%E8%A3%82/" title="闲谈Redis脑裂">
+                      <a href="/2023/06/12/Async%E6%B3%A8%E8%A7%A3%E6%9C%89%E4%BB%80%E4%B9%88%E7%BC%BA%E7%82%B9/" title="Async注解有什么缺点">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">闲谈Redis脑裂</span>
+                        <span class="hidden-mobile">Async注解有什么缺点</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -357,8 +374,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/09/26/%E6%B5%85%E8%B0%88%E5%8D%8F%E7%A8%8B/" title="浅谈协程">
-                        <span class="hidden-mobile">浅谈协程</span>
+                      <a href="/2023/05/26/HTTP%E7%89%88%E6%9C%AC%E5%8F%91%E5%B1%95/" title="HTTP版本发展">
+                        <span class="hidden-mobile">HTTP版本发展</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

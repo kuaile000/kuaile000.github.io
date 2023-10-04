@@ -16,21 +16,21 @@
   <meta name="author" content="kuaile000">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="定时任务多种实现单点系统  ScheduledExecutorService类： ScheduledExecutorService是Java SE5中新增的一个定时任务执行器，它可以比Timer更精准地执行任务，并支持多个任务并发执行。通过调用ScheduledExecutorService.schedule()或ScheduledExecutorService.scheduleAtFixedRa">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://lzhnet.top/2023/10/03/hello-world/index.html">
+<meta property="og:title" content="如何实现定时任务以及延迟任务">
+<meta property="og:url" content="http://lzhnet.top/2023/07/10/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E4%BB%A5%E5%8F%8A%E5%BB%B6%E8%BF%9F%E4%BB%BB%E5%8A%A1/index.html">
 <meta property="og:site_name" content="LBlog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="定时任务多种实现单点系统  ScheduledExecutorService类： ScheduledExecutorService是Java SE5中新增的一个定时任务执行器，它可以比Timer更精准地执行任务，并支持多个任务并发执行。通过调用ScheduledExecutorService.schedule()或ScheduledExecutorService.scheduleAtFixedRa">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-10-03T08:47:49.717Z">
-<meta property="article:modified_time" content="2023-10-03T06:01:41.394Z">
+<meta property="article:published_time" content="2023-07-10T12:56:33.000Z">
+<meta property="article:modified_time" content="2023-10-04T08:49:03.177Z">
 <meta property="article:author" content="kuaile000">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Hello World - LBlog</title>
+  <title>如何实现定时任务以及延迟任务 - LBlog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Hello World"></span>
+            <span id="subtitle" data-typed-text="如何实现定时任务以及延迟任务"></span>
           
         </div>
 
@@ -207,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-03 16:47" pubdate>
-          October 3, 2023 pm
+        <time datetime="2023-07-10 20:56" pubdate>
+          July 10, 2023 pm
         </time>
       </span>
     
@@ -219,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          367 words
+          3.2k words
         
       </span>
     
@@ -230,7 +230,7 @@
         
         
         
-          4 mins
+          27 mins
         
       </span>
     
@@ -267,24 +267,92 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Hello World</h1>
+            <h1 id="seo-header">如何实现定时任务以及延迟任务</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+                <h3 id="定时任务多种实现"><a href="#定时任务多种实现" class="headerlink" title="定时任务多种实现"></a>定时任务多种实现</h3><p><strong>单点系统</strong></p>
+<ol>
+<li><strong>ScheduledExecutorService类</strong>： ScheduledExecutorService是Java SE5中新增的一个定时任务执行器，它可以比Timer更精准地执行任务，并支持多个任务并发执行。通过调用ScheduledExecutorService.schedule()或ScheduledExecutorService.scheduleAtFixedRate()方法来安排任务的执行时间。</li>
+<li><strong>DelayQueue</strong>：DelayQueue是一个带有延迟时间的无界阻塞队列，它的元素必须实现Delayed接口。当从DelayQueue中取出一个元素时，如果其延迟时间还未到达，则会阻塞等待，直到延迟时间到达。因此，我们可以通过将任务封装成实现Delayed接口的元素，将其放入DelayQueue中，再使用一个线程不断地从DelayQueue中取出元素并执行任务，从而实现定时任务的调度。</li>
+<li><strong>Timer类和TimerTask类</strong>： Timer类是Java SE5之前的一个定时器工具类，可用于执行定时任务。TimerTask类则表示一个可调度的任务，通常通过继承该类来实现自己的任务，然后使用Timer.schedule()方法来安排任务的执行时间</li>
+</ol>
+<p><strong>分布式</strong></p>
+<ol>
+<li><strong>xxl-job</strong>：xxl-job是一款分布式定时任务调度平台，可以实现各种类型的定时任务调度，如定时执行Java代码、调用HTTP接口、执行Shell脚本等。xxl-job采用分布式架构，支持集群部署，可以满足高并发、大数据量的任务调度需求。</li>
+</ol>
+<h3 id="延迟任务实现"><a href="#延迟任务实现" class="headerlink" title="延迟任务实现"></a>延迟任务实现</h3><ol>
+<li><strong>被动关闭</strong><ul>
+<li>例如：就是订单创建好了之后。我们系统上不做主动关单，什么时候用户来访问这个订单了，再去判断时间是不是超过了过期时间，如果过了时间那就进行关单操作，然后再提示用户。</li>
+<li>如果用户一直不来查看这个订单，那么就会有很多脏数据冗余在数据库中一直无法被关单。</li>
+</ul>
+</li>
+<li><strong>定时任务</strong><ul>
+<li>分布式调度平台</li>
+<li>对数据库造成压力。 定时任务集中扫表，这会使得数据库IO在短时间内被大量占用和消耗，如果没有做好隔离，并且业务量比较大的话，就可能会影响到线上的正常业务。</li>
+<li>时间不精准。 一般定时任务基于固定的频率、按照时间定时执行的，那么就可能会发生很多订单已经到了超时时间，但是定时任务的调度时间还没到，那么就会导致这些订单的实际关闭时间要比应该关闭的时间晚一些。</li>
+<li>无法处理大数据量。 定时任务的方式是会把本来比较分散的关闭时间集中到任务调度的那一段时间，如果订单量比较大的话，那么就可能导致任务执行时间很长，整个任务的时间越长，订单被扫描到时间可能就很晚，那么就会导致关闭时间更晚。</li>
+<li>分库分表问题。</li>
+</ul>
+</li>
+<li>DelayQueue<ul>
+<li><strong>基于JDK的DelayQueue方案只适合在单机场景、并且数据量不大的场景中使用，如果涉及到分布式场景，那还是不建议使用。</strong></li>
+<li>DelayQueue是基于JVM内存的，一旦机器重启了，里面的数据就都没有了。</li>
+</ul>
+</li>
+<li>时间轮<ul>
+<li>基于Netty的HashedWheelTimer可以帮助我们快速的实现一个时间轮，这种方式和DelayQueue类似，缺点都是基于内存、集群扩展麻烦、内存有限制等等。</li>
+<li><strong>基于Netty的时间轮方案比基于JDK的DelayQueue效率更高，实现起来更简单，但是同样的，只适合在单机场景、并且数据量不大的场景中使用，如果涉及到分布式场景，那还是不建议使用。</strong></li>
+</ul>
+</li>
+<li>kafka<ul>
+<li>Kafka 中的时间轮的实现是 TimingWheel 类，位于 kafka.utils.timer 包中。基于Kafka的时间轮同样可以得到O(1)时间复杂度，性能上还是不错的。</li>
+<li>通过时间轮记录任务到期时间，再配合DelayQueue进行时间推动</li>
+<li>基于Kafka的时间轮的实现方式，在实现方式上有点复杂，需要依赖kafka，但是他的稳定性和性能都要更高一些，而且适合用在分布式场景中。</li>
+</ul>
+</li>
+<li>RocketMQ延迟消息<ul>
+<li>RocketMQ的延迟消息并不是支持任意时长的延迟的，它只支持：1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h这几个时长。（商业版支持任意时长）</li>
+<li><strong>关单时长刚好和RocketMQ延迟消息支持的时长匹配的话，那么是可以基于RocketMQ延迟消息来实现的。否则，这种方式并不是最佳的。（但是在RocketMQ 5.0中新增了基于时间轮实现的定时消息，可以解决这个问题！）</strong></li>
+</ul>
+</li>
+<li>RabbitMQ死信队列<ul>
+<li>当RabbitMQ中的一条正常的消息，因为过了存活时间（TTL过期）、队列长度超限、被消费者拒绝等原因无法被消费时，就会变成Dead Message，即死信。</li>
+<li>当一个消息变成死信之后，他就能被重新发送到死信队列中（其实是交换机-exchange）。</li>
+<li>死信队列的实现方式存在一个问题，那就是可能造成队头阻塞，因为队列是先进先出的，而且每次只会判断队头的消息是否过期，那么，如果队头的消息时间很长，一直都不过期，那么就会阻塞整个队列，这时候即使排在他后面的消息过期了，那么也会被一直阻塞。</li>
+</ul>
+</li>
+<li>RabbitMQ插件<ul>
+<li>以往我们基于死信队列的方式，是消息先会投递到一个正常队列，在TTL过期后进入死信队列。但是基于插件的这种方式，消息并不会立即进入队列，而是先把他们保存在一个基于Erlang开发的Mnesia数据库中，然后通过一个定时器去查询需要被投递的消息，再把他们投递到x-delayed-message队列中。</li>
+<li><strong>RabbitMQ插件的方式可以实现延迟消息，并且不存在消息阻塞的问题，但是因为是基于插件的，而这个插件支持的最大延长时间是(2^32)-1 毫秒，大约49天，超过这个时间就会被立即消费。</strong></li>
+</ul>
+</li>
+<li>Redis过期监听<ul>
+<li>这个方案不建议大家使用，是因为Redis官网上明确的说过，Redis并不保证Key在过期的时候就能被立即删除，更不保证这个消息能被立即发出。所以，消息延迟是必然存在的，随着数据量越大延迟越长，延迟个几分钟都是常事儿。</li>
+</ul>
+</li>
+<li>Redis的ZSet<ul>
+<li>zset是一个有序集合，每一个元素(member)都关联了一个 score，可以通过 score 排序来取集合中的值。</li>
+<li><strong>使用redis zset来实现订单关闭的功能的优点是可以借助redis的持久化、高可用机制。避免数据丢失。但是这个方案也有缺点，那就是在高并发场景中，有可能有多个消费者同时获取到同一个订单号，一般采用加分布式锁解决，但是这样做也会降低吞吐型。</strong></li>
+<li>在大多数业务场景下，如果幂等性做得好的，多个消费者取到相同数据也无妨</li>
+</ul>
+</li>
+<li>Redisson<ul>
+<li>Redisson中定义了分布式延迟队列RDelayedQueue，这是一种基于我们前面介绍过的zset结构实现的延时队列，它允许以指定的延迟时长将元素放到目标队列中。</li>
+<li>其实就是在zset的基础上增加了一个基于内存的延迟队列。当我们要添加一个数据到延迟队列的时候，redisson会把数据+超时时间放到zset中，并且起一个延时任务，当任务到期的时候，再去zset中把数据取出来，返回给客户端使用。</li>
+<li><strong>基于Redisson的实现方式，是可以解决基于zset方案中的并发重复问题的，而且还能实现方式也比较简单，稳定性、性能都比较高。</strong></li>
+</ul>
+</li>
+</ol>
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><ul>
+<li><p>定时任务可以定时执行的原理是通过操作系统提供的定时器实现的。定时器是计算机系统的一个重要组成部分，它可以周期性地发出信号或中断，以便操作系统或其他应用程序可以在指定的时间间隔内执行某些任务。</p>
+</li>
+<li><p>在定时任务中，操作系统或应用程序会利用计时器或定时器来定期检查当前时间是否达到了预定的执行时间，如果当前时间已经达到了预定的时间，系统会自动执行相应的任务或定时事件。在操作系统中，常见的定时任务管理工具有crontab（Linux系统）、Windows Task Scheduler（Windows系统）等。</p>
+</li>
+<li><p>总之，定时任务可以定时执行，是因为操作系统或应用程序利用定时器周期性地检查当前时间，一旦达到预定时间就会自动执行相应的任务。</p>
+</li>
+</ul>
 
                 
               </div>
@@ -302,8 +370,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Hello World</div>
-      <div>http://lzhnet.top/2023/10/03/hello-world/</div>
+      <div>如何实现定时任务以及延迟任务</div>
+      <div>http://lzhnet.top/2023/07/10/如何实现定时任务以及延迟任务/</div>
     </div>
     <div class="license-meta">
       
@@ -315,7 +383,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>October 3, 2023</div>
+          <div>July 10, 2023</div>
         </div>
       
       
@@ -347,9 +415,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/03/%E9%97%B2%E8%B0%88Redis%E8%84%91%E8%A3%82/" title="闲谈Redis脑裂">
+                      <a href="/2023/07/15/%E7%9C%8B%E7%9C%8B%E4%BB%80%E4%B9%88%E6%98%AF%E7%8A%B6%E6%80%81%E6%9C%BA/" title="看看什么是状态机">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">闲谈Redis脑裂</span>
+                        <span class="hidden-mobile">看看什么是状态机</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -357,8 +425,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/09/26/%E6%B5%85%E8%B0%88%E5%8D%8F%E7%A8%8B/" title="浅谈协程">
-                        <span class="hidden-mobile">浅谈协程</span>
+                      <a href="/2023/07/03/%E8%B0%88%E8%B0%88InnoDB%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7/" title="谈谈InnoDB四大特性">
+                        <span class="hidden-mobile">谈谈InnoDB四大特性</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -16,21 +16,21 @@
   <meta name="author" content="kuaile000">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="排序是怎么做的 order by 是做排序的，具体怎么排取决于优化器的选择，如果优化器认为走索引更快，那么就会用索引排序，否则，就会使用filesort (执行计划中extra中提示：using filesort），但是能走索引排序的情况并不多，并且确定性也没有那么强，很多时候，还是走的filesort。 filesort这种排序方式中，如果需要排序的内容比较少，就会基于内存中的sort_buff">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://lzhnet.top/2023/10/03/hello-world/index.html">
+<meta property="og:title" content="order by要如何使用">
+<meta property="og:url" content="http://lzhnet.top/2023/05/14/order-by%E8%A6%81%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="LBlog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="排序是怎么做的 order by 是做排序的，具体怎么排取决于优化器的选择，如果优化器认为走索引更快，那么就会用索引排序，否则，就会使用filesort (执行计划中extra中提示：using filesort），但是能走索引排序的情况并不多，并且确定性也没有那么强，很多时候，还是走的filesort。 filesort这种排序方式中，如果需要排序的内容比较少，就会基于内存中的sort_buff">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-10-03T08:47:49.717Z">
-<meta property="article:modified_time" content="2023-10-03T06:01:41.394Z">
+<meta property="article:published_time" content="2023-05-14T13:16:30.000Z">
+<meta property="article:modified_time" content="2023-10-04T06:08:30.187Z">
 <meta property="article:author" content="kuaile000">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Hello World - LBlog</title>
+  <title>order by要如何使用 - LBlog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Hello World"></span>
+            <span id="subtitle" data-typed-text="order by要如何使用"></span>
           
         </div>
 
@@ -207,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-03 16:47" pubdate>
-          October 3, 2023 pm
+        <time datetime="2023-05-14 21:16" pubdate>
+          May 14, 2023 pm
         </time>
       </span>
     
@@ -219,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          367 words
+          613 words
         
       </span>
     
@@ -230,7 +230,7 @@
         
         
         
-          4 mins
+          6 mins
         
       </span>
     
@@ -267,24 +267,21 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Hello World</h1>
+            <h1 id="seo-header">order by要如何使用</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+                <h3 id="排序是怎么做的"><a href="#排序是怎么做的" class="headerlink" title="排序是怎么做的"></a>排序是怎么做的</h3><ul>
+<li>order by 是做排序的，具体怎么排取决于优化器的选择，如果优化器认为走索引更快，那么就会用索引排序，否则，就会使用filesort (执行计划中extra中提示：using filesort），但是能走索引排序的情况并不多，并且确定性也没有那么强，很多时候，还是走的filesort。</li>
+<li>filesort这种排序方式中，如果需要排序的内容比较少，就会基于内存中的sort_buffer，否则就需要使用磁盘临时文件进行排序了。并且在实际排序过程中，如果字段长度并不是特别长，那么就会使用全字段排序的方式直接在sort_buffer中排序后返回结果集。如果字段长度并特别长，那么就可能基于空间考虑，采用row_id排序，这样就会在排序后进行二次回表后返回结果集。</li>
+</ul>
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><ul>
+<li>当我们在做查询的时候，经常会使用order by进行排序，而当我们只想查询部分数量的时候，也会使用limit进行限制条数。</li>
+<li>当我们在做查询的时候，经常会使用order by进行排序，而当我们只想查询部分数量的时候，也会使用limit进行限制条数。</li>
+<li>这是由于<strong>如果ORDER BY的列中，多行具有相同的值，服务器可以自由地以任何顺序返回这些行，并且根据整体执行计划的不同可能会以不同的方式返回它们。</strong></li>
+<li>所以，当我们在进行Limit+order by (字段), (ID)的时候，一定要尽量避免使用可能重复的字段，如时间、名称等，而应该选择唯一性的字段，如主键ID，或者唯一性索引。</li>
+</ul>
 
                 
               </div>
@@ -302,8 +299,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Hello World</div>
-      <div>http://lzhnet.top/2023/10/03/hello-world/</div>
+      <div>order by要如何使用</div>
+      <div>http://lzhnet.top/2023/05/14/order-by要如何使用/</div>
     </div>
     <div class="license-meta">
       
@@ -315,7 +312,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>October 3, 2023</div>
+          <div>May 14, 2023</div>
         </div>
       
       
@@ -347,9 +344,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/03/%E9%97%B2%E8%B0%88Redis%E8%84%91%E8%A3%82/" title="闲谈Redis脑裂">
+                      <a href="/2023/05/26/HTTP%E7%89%88%E6%9C%AC%E5%8F%91%E5%B1%95/" title="HTTP版本发展">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">闲谈Redis脑裂</span>
+                        <span class="hidden-mobile">HTTP版本发展</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -357,8 +354,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/09/26/%E6%B5%85%E8%B0%88%E5%8D%8F%E7%A8%8B/" title="浅谈协程">
-                        <span class="hidden-mobile">浅谈协程</span>
+                      <a href="/2023/05/03/FirstBlog/" title="FirstBlog">
+                        <span class="hidden-mobile">FirstBlog</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -16,21 +16,21 @@
   <meta name="author" content="kuaile000">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="实现方式数据库第一种 当我们要锁住某个方法或资源时，我们就在该表中增加一条记录，想要释放锁的时候就删除这条记录。  CREATE TABLE &#96;methodLock&#96; (   &#96;id&#96; int(11) NOT NULL AUTO_INCREMENT COMMENT &#39;主键&#39;,   &#96;method_name&#96; varchar(64) NOT NULL DEFAULT &#39;&amp;#3">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://lzhnet.top/2023/10/03/hello-world/index.html">
+<meta property="og:title" content="分布式锁常见实现">
+<meta property="og:url" content="http://lzhnet.top/2023/06/15/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%B8%B8%E8%A7%81%E5%AE%9E%E7%8E%B0/index.html">
 <meta property="og:site_name" content="LBlog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="实现方式数据库第一种 当我们要锁住某个方法或资源时，我们就在该表中增加一条记录，想要释放锁的时候就删除这条记录。  CREATE TABLE &#96;methodLock&#96; (   &#96;id&#96; int(11) NOT NULL AUTO_INCREMENT COMMENT &#39;主键&#39;,   &#96;method_name&#96; varchar(64) NOT NULL DEFAULT &#39;&amp;#3">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-10-03T08:47:49.717Z">
-<meta property="article:modified_time" content="2023-10-03T06:01:41.394Z">
+<meta property="article:published_time" content="2023-06-15T12:59:35.000Z">
+<meta property="article:modified_time" content="2023-10-04T07:00:53.620Z">
 <meta property="article:author" content="kuaile000">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Hello World - LBlog</title>
+  <title>分布式锁常见实现 - LBlog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Hello World"></span>
+            <span id="subtitle" data-typed-text="分布式锁常见实现"></span>
           
         </div>
 
@@ -207,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-03 16:47" pubdate>
-          October 3, 2023 pm
+        <time datetime="2023-06-15 20:59" pubdate>
+          June 15, 2023 pm
         </time>
       </span>
     
@@ -219,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          367 words
+          3.6k words
         
       </span>
     
@@ -230,7 +230,7 @@
         
         
         
-          4 mins
+          31 mins
         
       </span>
     
@@ -267,24 +267,48 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Hello World</h1>
+            <h1 id="seo-header">分布式锁常见实现</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
+                <h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><h4 id="第一种"><a href="#第一种" class="headerlink" title="第一种"></a>第一种</h4><ul>
+<li><p>当我们要锁住某个方法或资源时，我们就在该表中增加一条记录，想要释放锁的时候就删除这条记录。</p>
+</li>
+<li><pre><code class="sql">CREATE TABLE `methodLock` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT &#39;主键&#39;,
+  `method_name` varchar(64) NOT NULL DEFAULT &#39;&#39; COMMENT &#39;锁定的方法名&#39;,
+  `desc` varchar(1024) NOT NULL DEFAULT &#39;备注信息&#39;,
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT &#39;保存数据时间，自动生成&#39;,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uidx_method_name` (`method_name `) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=&#39;锁定中的方法&#39;;
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><br>- 因为我们对method_name做了唯一性约束，这里如果有多个请求同时提交到数据库的话，数据库会保证只有一个操作可以成功，那么我们就可以认为操作成功的那个线程获得了该方法的锁，可以执行方法体内容。<br><br>- 问题：<br><br>  <span class="hljs-number">1.</span> 这把锁强依赖数据库的可用性，数据库是一个单点，一旦数据库挂掉，会导致业务系统不可用。<br>     - 主从<br>  <span class="hljs-number">2.</span> 这把锁没有失效时间，一旦解锁操作失败，就会导致锁记录一直在数据库中，其他线程无法再获得到锁。<br>     - 定时任务<br>  <span class="hljs-number">3.</span> 这把锁只能是非阻塞的，因为数据的insert操作，一旦插入失败就会直接报错。没有获得锁的线程并不会进入排队队列，要想再次获得锁就要再次触发获得锁操作。<br>     - 循环<br>  <span class="hljs-number">4.</span> 这把锁只能是非阻塞的，因为数据的insert操作，一旦插入失败就会直接报错。没有获得锁的线程并不会进入排队队列，要想再次获得锁就要再次触发获得锁操作。<br>     - 加字段，如线程ID等<br><br><span class="hljs-meta">#### 第二种</span><br><br>- 在查询语句后面增加<span class="hljs-keyword">for</span> update，数据库会在查询过程中给数据库表增加排他锁（这里再多提一句，InnoDB引擎在加锁的时候，只有通过索引进行检索的时候才会使用行级锁，否则会使用表级锁。<br>- 这里我们希望使用行级锁，就要给method_name添加索引，值得注意的是，这个索引一定要创建成唯一索引，否则会出现多个重载方法之间无法同时被访问的问题。重载方法的话建议把参数类型也加上。）。当某条记录被加上排他锁之后，其他线程无法再在该行记录上增加排他锁。<br>- 通过connection.commit()操作来释放锁。<br>- 天然阻塞<br>- 如果数据量少容易扫全表，使用表锁<br>- 长时间不提交，容易打满数据库连接<br><br><span class="hljs-meta">### Redis</span><br><br><span class="hljs-number">1.</span> Lua脚本<br><br><span class="hljs-number">2.</span> setnx<br><br>   - 实现简单：SETNX命令实现简单，易于理解和使用<br>   - 性能较高：由于SETNX命令的执行原子性，保证了分布式锁的正确性，而且在Redis中，SETNX命令是单线程执行的，所以性能较高。<br>   - 锁无法续期：如果加锁方在加锁后的执行时间较长，而锁的超时时间设置的较短，可能导致锁被误释放。<br>   - 无法避免死锁：如果加锁方在加锁后未能及时解锁（也未设置超时时间），且该客户端崩溃，可能导致死锁。<br>   - setnx不支持可重入，可以借助redission封装的能力实现可重入锁。<br><br><span class="hljs-number">3.</span> Redission<br><br>   - ```java<br>     @Service<br>     <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">LockTestService</span>&#123;<br>         @Autowired<br>         RedissonClient redisson;<br>         <br>         <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testLock</span>()</span>&#123;<br>             RLock <span class="hljs-keyword">lock</span> = redisson.getLock(<span class="hljs-string">&quot;myLock&quot;</span>);<br>             <span class="hljs-keyword">try</span> &#123;<br>                 <span class="hljs-keyword">lock</span>.<span class="hljs-keyword">lock</span>(<span class="hljs-number">30</span>, TimeUnit.SECONDS);<br>                 <span class="hljs-comment">// 执行需要加锁的代码</span><br>             &#125; <span class="hljs-keyword">finally</span> &#123;<br>                 <span class="hljs-keyword">lock</span>.unlock();<br>             &#125;<br>         &#125;<br>     &#125;<br>     <br>     <span class="hljs-comment">//-----------------------------------------</span><br>     RLock fairLock = redisson.getFairLock(<span class="hljs-string">&quot;anyLock&quot;</span>);<br>     <span class="hljs-comment">//-----------------------------------------</span><br>     RLock lock1 = redissonInstance1.getLock(<span class="hljs-string">&quot;lock1&quot;</span>);<br>     RLock lock2 = redissonInstance2.getLock(<span class="hljs-string">&quot;lock2&quot;</span>);<br>     RLock lock3 = redissonInstance3.getLock(<span class="hljs-string">&quot;lock3&quot;</span>);<br>     <br>     RedissonMultiLock <span class="hljs-keyword">lock</span> = <span class="hljs-keyword">new</span> RedissonMultiLock(lock1, lock2, lock3);<br>     <span class="hljs-comment">// 同时加锁：lock1 lock2 lock3</span><br>     <span class="hljs-comment">// 所有的锁都上锁成功才算成功。</span><br>     <span class="hljs-keyword">lock</span>.<span class="hljs-keyword">lock</span>();<br>     ...<br>     <span class="hljs-keyword">lock</span>.unlock();<br>     <span class="hljs-comment">//-----------------------------------------</span><br>     RReadWriteLock rwlock = redisson.getReadWriteLock(<span class="hljs-string">&quot;anyRWLock&quot;</span>);<br>     <span class="hljs-comment">// 最常见的使用方法</span><br>     rwlock.readLock().<span class="hljs-keyword">lock</span>();<br>     <span class="hljs-comment">// 或</span><br>     rwlock.writeLock().<span class="hljs-keyword">lock</span>();<br></code></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
+ - 可重入锁以外，Redisson还支持公平锁（FairLock）以及联锁（MultiLock）的使用。
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
+ - RedLock通过使用多个Redis节点，来提供一个更加健壮的分布式锁解决方案，能够在某些Redis节点故障的情况下，仍然能够保证分布式锁的可用性。
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
+ - 在进行加锁操作时，RedLock会向每个Redis节点发送相同的命令请求，每个节点都会去竞争锁，如果至少在大多数节点上成功获取了锁，那么就认为加锁成功。
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+   - 网络分区：在网络分区的情况下，RedLock 仍然可以提供足够的可靠性。虽然会存在节点获取到相同锁的情况，但这种情况只会发生在网络分区发生时，且只会发生在一小部分节点上。而在网络分区恢复后，RedLock 会自动解锁。
+   - 时间漂移：RedLock 可以使用 NTP 等工具来同步不同机器之间的时间，从而避免时间漂移导致的问题。
+   - Redis 的主从复制：虽然 Redis 的主从复制可能导致锁的丢失，但这种情况非常罕见，并且可以通过多种方式来避免，例如使用 Redis Cluster。
+</code></pre>
+</li>
+</ul>
+<h3 id="Zookeeper"><a href="#Zookeeper" class="headerlink" title="Zookeeper"></a>Zookeeper</h3><p>大致思想即为：每个客户端对某个方法加锁时，在zookeeper上的与该方法对应的指定节点的目录下，生成一个唯一的瞬时有序节点。 判断是否获取锁的方式很简单，只需要判断有序节点中序号最小的一个。 当释放锁的时候，只需将这个瞬时节点删除即可。同时，其可以避免服务宕机导致的锁无法释放，而产生的死锁问题。</p>
+<p>来看下Zookeeper能不能解决以下问题。</p>
+<ul>
+<li>锁无法释放？使用Zookeeper可以有效的解决锁无法释放的问题，因为在创建锁的时候，客户端会在ZK中创建一个临时节点，一旦客户端获取到锁之后突然挂掉（Session连接断开），那么这个临时节点就会自动删除掉。其他客户端就可以再次获得锁。 </li>
+<li>非阻塞锁？使用Zookeeper可以实现阻塞的锁，客户端可以通过在ZK中创建顺序节点，并且在节点上绑定监听器，一旦节点有变化，Zookeeper会通知客户端，客户端可以检查自己创建的节点是不是当前所有节点中序号最小的，如果是，那么自己就获取到锁，便可以执行业务逻辑了。 </li>
+<li>不可重入？使用Zookeeper也可以有效的解决不可重入的问题，客户端在创建节点的时候，把当前客户端的主机信息和线程信息直接写入到节点中，下次想要获取锁的时候和当前最小的节点中的数据比对一下就可以了。如果和自己的信息一样，那么自己直接获取到锁，如果不一样就再创建一个临时的顺序节点，参与排队。 </li>
+<li>单点问题？使用Zookeeper可以有效的解决单点问题，ZK是集群部署的，只要集群中有半数以上的机器存活，就可以对外提供服务。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>Zookeeper实现的分布式锁其实存在一个缺点，那就是性能上可能并没有缓存服务那么高。因为每次在创建锁和释放锁的过程中，都要动态创建、销毁瞬时节点来实现锁功能。ZK中创建和删除节点只能通过Leader服务器来执行，然后将数据同步到所有的Follower机器上。</li>
+</ul>
 
                 
               </div>
@@ -302,8 +326,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Hello World</div>
-      <div>http://lzhnet.top/2023/10/03/hello-world/</div>
+      <div>分布式锁常见实现</div>
+      <div>http://lzhnet.top/2023/06/15/分布式锁常见实现/</div>
     </div>
     <div class="license-meta">
       
@@ -315,7 +339,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>October 3, 2023</div>
+          <div>June 15, 2023</div>
         </div>
       
       
@@ -347,9 +371,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/03/%E9%97%B2%E8%B0%88Redis%E8%84%91%E8%A3%82/" title="闲谈Redis脑裂">
+                      <a href="/2023/06/28/%E8%AE%B0SQL%E4%BC%98%E5%8C%96/" title="记SQL优化">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">闲谈Redis脑裂</span>
+                        <span class="hidden-mobile">记SQL优化</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -357,8 +381,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/09/26/%E6%B5%85%E8%B0%88%E5%8D%8F%E7%A8%8B/" title="浅谈协程">
-                        <span class="hidden-mobile">浅谈协程</span>
+                      <a href="/2023/06/14/%E5%85%B3%E4%BA%8E%E7%B4%A2%E5%BC%95%E8%A6%86%E7%9B%96%E4%B8%8E%E7%B4%A2%E5%BC%95%E4%B8%8B%E6%8E%A8/" title="关于索引覆盖与索引下推">
+                        <span class="hidden-mobile">关于索引覆盖与索引下推</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

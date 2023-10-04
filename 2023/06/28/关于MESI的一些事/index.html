@@ -16,21 +16,21 @@
   <meta name="author" content="kuaile000">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="MESI：最终一致性 M（Modified）：代表该缓存行中的内容被修改了，并且该缓存行只被缓存在该CPU中。这个状态的缓存行中的数据和内存中的不一样，在未来的某个时刻它会被写入到内存中（当其他CPU要读取该缓存行的内容时。或者其他CPU要修改该缓存对应的内存中的内容时 当我们要修改变量时，需要等待B-CPU将变量S变为I，也就是等待ACK响应，当A-CPU收到B响应时才能将变量进行修改 以此引入">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://lzhnet.top/2023/10/03/hello-world/index.html">
+<meta property="og:title" content="关于MESI的一些事">
+<meta property="og:url" content="http://lzhnet.top/2023/06/28/%E5%85%B3%E4%BA%8EMESI%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B/index.html">
 <meta property="og:site_name" content="LBlog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="MESI：最终一致性 M（Modified）：代表该缓存行中的内容被修改了，并且该缓存行只被缓存在该CPU中。这个状态的缓存行中的数据和内存中的不一样，在未来的某个时刻它会被写入到内存中（当其他CPU要读取该缓存行的内容时。或者其他CPU要修改该缓存对应的内存中的内容时 当我们要修改变量时，需要等待B-CPU将变量S变为I，也就是等待ACK响应，当A-CPU收到B响应时才能将变量进行修改 以此引入">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-10-03T08:47:49.717Z">
-<meta property="article:modified_time" content="2023-10-03T06:01:41.394Z">
+<meta property="article:published_time" content="2023-06-28T13:21:32.000Z">
+<meta property="article:modified_time" content="2023-10-04T11:25:09.456Z">
 <meta property="article:author" content="kuaile000">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Hello World - LBlog</title>
+  <title>关于MESI的一些事 - LBlog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Hello World"></span>
+            <span id="subtitle" data-typed-text="关于MESI的一些事"></span>
           
         </div>
 
@@ -207,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-03 16:47" pubdate>
-          October 3, 2023 pm
+        <time datetime="2023-06-28 21:21" pubdate>
+          June 28, 2023 pm
         </time>
       </span>
     
@@ -219,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          367 words
+          932 words
         
       </span>
     
@@ -230,7 +230,7 @@
         
         
         
-          4 mins
+          8 mins
         
       </span>
     
@@ -267,24 +267,39 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Hello World</h1>
+            <h1 id="seo-header">关于MESI的一些事</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+                <h4 id="MESI：最终一致性"><a href="#MESI：最终一致性" class="headerlink" title="MESI：最终一致性"></a><strong>MESI</strong>：最终一致性</h4><ol>
+<li>M（Modified）：代表该缓存行中的内容被修改了，并且该缓存行只被缓存在该CPU中。这个状态的缓存行中的数据和内存中的不一样，在未来的某个时刻它会被写入到内存中（当其他CPU要读取该缓存行的内容时。或者其他CPU要修改该缓存对应的内存中的内容时<ul>
+<li>当我们要修改变量时，需要等待B-CPU将变量S变为I，也就是等待ACK响应，当A-CPU收到B响应时才能将变量进行修改</li>
+<li>以此引入Store Buffer</li>
+</ul>
+</li>
+<li>E（Exclusive）：代表该缓存行对应内存中的内容只被该CPU缓存，其他CPU没有缓存该缓存对应内存行中的内容。</li>
+<li>S（Shared）：该状态意味着数据不止存在本地CPU缓存中，还存在别的CPU的缓存中。这个状态的数据和内存中的数据是一致的。</li>
+<li>I（Invalid）：代表该缓存行中的内容是无效的</li>
+</ol>
+<h4 id="Store-Buffer"><a href="#Store-Buffer" class="headerlink" title="Store Buffer"></a>Store Buffer</h4><ul>
+<li>有了Store Buffer，A-CPU便可以直接修改S变量，然后交给Store Buffer来等待ACK的响应，当收到确认后便可以将变量写入A-CPU本地缓存</li>
+<li>但是，Store Buffer的存储大小是有限的，我们无法将大量变量都存进Store Buffer中等待ACK的确认，因此我们需要引入失效队列</li>
+</ul>
+<h4 id="失效队列"><a href="#失效队列" class="headerlink" title="失效队列"></a>失效队列</h4><ul>
+<li>有了失效队列，Store Buffer中的变量便能够在失效消息被投入B中时，便可以收到ACK的确认，等到B-CPU空闲下来后便可以去消费失效队列中的消息</li>
+</ul>
+<h4 id="指令重排"><a href="#指令重排" class="headerlink" title="指令重排"></a>指令重排</h4><ul>
+<li>我们所熟悉的指令重排便是由于这两个缓存导致的，比如我们对A、B进行修改，但是B先投入到失效队列中导致B变量先被放入本地缓存中，这也会导致可见性问题</li>
+<li>读写屏障便是屏蔽这两个队列<ul>
+<li>写屏障必须要我们在进行写操作前，将所有失效变量刷入失效队列中</li>
+<li>读屏障则是要求CPU在读操作之前，将失效队列中的所有消息进行消费，之后再去读变量</li>
+</ul>
+</li>
+</ul>
+<h4 id="总线嗅探机制"><a href="#总线嗅探机制" class="headerlink" title="总线嗅探机制"></a><strong>总线嗅探机制</strong></h4><p>CPU和内存通过总线（BUS）互通消息。CPU感知其他CPU的行为（比如读、写某个缓存行）就是是通过嗅探（Snoop）线性中其他CPU发出的请求消息完成的，有时CPU也需要针对总线中的某些请求消息进行响应。这被称为”总线嗅探机制“。</p>
+<p><strong>嗅探风暴</strong></p>
+<p>当我们对一个变量或多个进行频繁修改时，便会不断的引发嗅探机制的触发，导致CPU总线资源消耗过高，这便是嗅探风暴</p>
 
                 
               </div>
@@ -302,8 +317,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Hello World</div>
-      <div>http://lzhnet.top/2023/10/03/hello-world/</div>
+      <div>关于MESI的一些事</div>
+      <div>http://lzhnet.top/2023/06/28/关于MESI的一些事/</div>
     </div>
     <div class="license-meta">
       
@@ -315,7 +330,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>October 3, 2023</div>
+          <div>June 28, 2023</div>
         </div>
       
       
@@ -347,9 +362,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/03/%E9%97%B2%E8%B0%88Redis%E8%84%91%E8%A3%82/" title="闲谈Redis脑裂">
+                      <a href="/2023/07/02/%E5%9F%BA%E4%BA%8E%E6%9C%AC%E5%9C%B0%E6%B6%88%E6%81%AF%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%9C%80%E7%BB%88%E4%B8%80%E8%87%B4%E6%80%A7/" title="基于本地消息表实现最终一致性">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">闲谈Redis脑裂</span>
+                        <span class="hidden-mobile">基于本地消息表实现最终一致性</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -357,8 +372,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/09/26/%E6%B5%85%E8%B0%88%E5%8D%8F%E7%A8%8B/" title="浅谈协程">
-                        <span class="hidden-mobile">浅谈协程</span>
+                      <a href="/2023/06/28/%E8%AE%B0SQL%E4%BC%98%E5%8C%96/" title="记SQL优化">
+                        <span class="hidden-mobile">记SQL优化</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

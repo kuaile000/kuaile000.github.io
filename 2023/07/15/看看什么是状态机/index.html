@@ -16,21 +16,21 @@
   <meta name="author" content="kuaile000">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="状态机在我们日常开发中，我们提到的状态机基本都是有限状态机，用于解决状态相关的问题。有限状态机可以通过状态转换和事件触发来描述程序的行为和状态迁移。 一个状态机通常包含以下几个要素：  状态（States）：代表系统可能处于的各种状态，例如 “已下单”、”已支付”、”已发货” 等。 事件（Events）：触发状态转换的事件，例如 “下单”、”支付”、”发货” 等。 转换（Transitions）：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://lzhnet.top/2023/10/03/hello-world/index.html">
+<meta property="og:title" content="看看什么是状态机">
+<meta property="og:url" content="http://lzhnet.top/2023/07/15/%E7%9C%8B%E7%9C%8B%E4%BB%80%E4%B9%88%E6%98%AF%E7%8A%B6%E6%80%81%E6%9C%BA/index.html">
 <meta property="og:site_name" content="LBlog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="状态机在我们日常开发中，我们提到的状态机基本都是有限状态机，用于解决状态相关的问题。有限状态机可以通过状态转换和事件触发来描述程序的行为和状态迁移。 一个状态机通常包含以下几个要素：  状态（States）：代表系统可能处于的各种状态，例如 “已下单”、”已支付”、”已发货” 等。 事件（Events）：触发状态转换的事件，例如 “下单”、”支付”、”发货” 等。 转换（Transitions）：">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-10-03T08:47:49.717Z">
-<meta property="article:modified_time" content="2023-10-03T06:01:41.394Z">
+<meta property="article:published_time" content="2023-07-15T13:20:54.000Z">
+<meta property="article:modified_time" content="2023-10-04T07:56:10.412Z">
 <meta property="article:author" content="kuaile000">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Hello World - LBlog</title>
+  <title>看看什么是状态机 - LBlog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Hello World"></span>
+            <span id="subtitle" data-typed-text="看看什么是状态机"></span>
           
         </div>
 
@@ -207,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-03 16:47" pubdate>
-          October 3, 2023 pm
+        <time datetime="2023-07-15 21:20" pubdate>
+          July 15, 2023 pm
         </time>
       </span>
     
@@ -219,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          367 words
+          2.8k words
         
       </span>
     
@@ -230,7 +230,7 @@
         
         
         
-          4 mins
+          24 mins
         
       </span>
     
@@ -267,24 +267,81 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Hello World</h1>
+            <h1 id="seo-header">看看什么是状态机</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
+                <h3 id="状态机"><a href="#状态机" class="headerlink" title="状态机"></a>状态机</h3><p>在我们日常开发中，我们提到的状态机基本都是有限状态机，用于解决状态相关的问题。有限状态机可以通过状态转换和事件触发来描述程序的行为和状态迁移。</p>
+<p>一个状态机通常包含以下几个要素：</p>
+<ol>
+<li>状态（States）：代表系统可能处于的各种状态，例如 “已下单”、”已支付”、”已发货” 等。</li>
+<li>事件（Events）：触发状态转换的事件，例如 “下单”、”支付”、”发货” 等。</li>
+<li>转换（Transitions）：定义状态之间的转换规则，即在某个事件发生时，系统从一个状态转换到另一个状态的规则。</li>
+<li>动作（Actions）：在状态转换发生时执行的操作或行为。</li>
+</ol>
+<p>状态机的实现，有很多种方式，可以用一些状态机的框架，如Spring StateMachine，也可以用状态模式，也可以自己封装一个工具类都行。</p>
+<p>如果没有一个严格的状态机控制的话，我们是可以随便修改订单的状态的，我们可以在已下单状态直接推进到已发货状态，这显然是不对的。</p>
+<p>而状态机就是来控制这个状态的流转的他的目的都是把状态、事件、转换以及动作封装在一起的，他把这些东西内聚在一起了。有了它，一个已下单状态的订单，只能通过支付事件来驱动，并且还会有一些其他的约束，比如支付金额&gt;0（转移条件）等，然后他的下一个状态只能是已支付这样的。</p>
+<h3 id="Spring-StateMachine"><a href="#Spring-StateMachine" class="headerlink" title="Spring StateMachine"></a>Spring StateMachine</h3><p>Spring State Machine（简称 Spring SM）是 Spring Framework 的一个模块，它提供了一个用于构建有限状态机的框架。</p>
+<ul>
+<li><p>获取任务状态，创建状态机</p>
+</li>
+<li><pre><code class="java">@Component
+public class WorkStateMachineFactory implements StateMachineFactory &#123;
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
+    @Resource
+    private WorkStateMachineHandler stateMachineHandler;
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
+    @Override
+    public UntypedStateMachine createStateMachine(Object initialStateId) &#123;
+        UntypedStateMachineBuilder stateMachineBuilder = StateMachineBuilderFactory.create(WorkStateMachine.class);
+        UntypedStateMachine stateMachine = stateMachineBuilder.newUntypedStateMachine(initialStateId, StateMachineConfiguration.create());
+        //  添加监听器，开始处理，异常处理，完成处理
+        stateMachine.addDeclarativeListener(stateMachineHandler);
+        return stateMachine;
+    &#125;
+&#125;
+//-----------------------------
+UntypedStateMachine workMachine =
+     workStateMachineFactory.createStateMachine(WorkStatusEnum.valueOf(workStatus));
+workMachine.fire(MachineEventUtils.getWorkEventByReportStatus(workToStatus), reportContext);
+//状态改变
+@States(&#123;
+        @State(name = WorkStateConstants.RUNNABLE, initialState = true),
+        @State(name = WorkStateConstants.RUNNING),
+        @State(name = WorkStateConstants.STOPPING),
+        @State(name = WorkStateConstants.UNKNOWN),
+        @State(name = WorkStateConstants.FAIL),
+        @State(name = WorkStateConstants.STOPPED),
+        @State(name = WorkStateConstants.FINISHED)
+&#125;)
+@Transitions(&#123;
+        @Transit(from = WorkStateConstants.RUNNABLE, to = WorkStateConstants.FAIL, on = WorkEventConstants.IGNORE_GROUP,callMethod = &quot;fromRunnableToFailByIgnoreGroup&quot;),
+        @Transit(from = WorkStateConstants.RUNNABLE, to = WorkStateConstants.RUNNING, on = WorkEventConstants.TAKE, callMethod = &quot;fromRunnableToRunningByTake&quot;),
+        @Transit(from = WorkStateConstants.RUNNING, to = WorkStateConstants.RUNNING, on = WorkEventConstants.REPORT_RUNNING, callMethod = &quot;fromRunningToRunningByReportRunning&quot;),
+&#125;)
+@StateMachineParameters(stateType = WorkStatusEnum.class, eventType = WorkEventEnum.class, contextType = WorkContext.class)
+@Slf4j
+public class WorkStateMachine extends AbstractUntypedStateMachine &#123;
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
+    @Resource
+    private IWorkService workService;
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    /**
+     * 运行-&gt;运行失败 上报失败
+     */
+    public void fromRunnableToFailByIgnoreGroup(WorkStatusEnum from, WorkStatusEnum to, WorkEventEnum event, WorkContext context) &#123;
+
+        workService.workIgnoreGroup(from,to,event,context);
+
+    &#125;
+&#125;
+</code></pre>
+</li>
+<li><p>tips：由于StateMachine实例不是由Spring容器创建，所以这个过程中无法通过注解方式开启事务(Spring没有机会去创建事务代理)，如果需要事务，必须采用编程式事务，在AbstractStateMachineEngine的fire函数中隐式的实现。</p>
+</li>
+</ul>
 
                 
               </div>
@@ -302,8 +359,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Hello World</div>
-      <div>http://lzhnet.top/2023/10/03/hello-world/</div>
+      <div>看看什么是状态机</div>
+      <div>http://lzhnet.top/2023/07/15/看看什么是状态机/</div>
     </div>
     <div class="license-meta">
       
@@ -315,7 +372,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>October 3, 2023</div>
+          <div>July 15, 2023</div>
         </div>
       
       
@@ -347,9 +404,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/03/%E9%97%B2%E8%B0%88Redis%E8%84%91%E8%A3%82/" title="闲谈Redis脑裂">
+                      <a href="/2023/08/03/%E6%B5%85%E8%B0%88%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" title="浅谈网络安全">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">闲谈Redis脑裂</span>
+                        <span class="hidden-mobile">浅谈网络安全</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -357,8 +414,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/09/26/%E6%B5%85%E8%B0%88%E5%8D%8F%E7%A8%8B/" title="浅谈协程">
-                        <span class="hidden-mobile">浅谈协程</span>
+                      <a href="/2023/07/10/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E4%BB%A5%E5%8F%8A%E5%BB%B6%E8%BF%9F%E4%BB%BB%E5%8A%A1/" title="如何实现定时任务以及延迟任务">
+                        <span class="hidden-mobile">如何实现定时任务以及延迟任务</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

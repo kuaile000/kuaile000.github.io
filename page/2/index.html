@@ -18,7 +18,7 @@
   
     <meta property="og:type" content="website">
 <meta property="og:title" content="LBlog">
-<meta property="og:url" content="http://lzhnet.top/index.html">
+<meta property="og:url" content="http://lzhnet.top/page/2/index.html">
 <meta property="og:site_name" content="LBlog">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="kuaile000">
@@ -186,7 +186,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Everything will be ok in the end, if not ok, it is not in the end."></span>
+            <span id="subtitle" data-typed-text="An elegant Material-Design theme for Hexo"></span>
           
         </div>
 
@@ -224,15 +224,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2023/10/03/%E9%97%B2%E8%B0%88Redis%E8%84%91%E8%A3%82/" target="_self">
-          闲谈Redis脑裂
+        <a href="/2023/06/28/%E5%85%B3%E4%BA%8EMESI%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B/" target="_self">
+          关于MESI的一些事
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/10/03/%E9%97%B2%E8%B0%88Redis%E8%84%91%E8%A3%82/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/06/28/%E5%85%B3%E4%BA%8EMESI%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B/" target="_self">
         <div>
-          什么是脑裂脑裂是在分布式系统中经常出现的问题之一，它指的是由于网络或节点故障等原因，导致一个分布式系统被分为多个独立的子系统，每个子系统独立运行，无法相互通信，同时认为自己是整个系统的主节点，这就会导致整个系统失去一致性和可用性。 Redis脑裂原因、危害、解决Redis的脑裂问题可能发生在网络分区或者主节点出现问题的时候：  网络分区：网络故障或分区导致了不同子集之间的通信中断。 Master节
+          MESI：最终一致性 M（Modified）：代表该缓存行中的内容被修改了，并且该缓存行只被缓存在该CPU中。这个状态的缓存行中的数据和内存中的不一样，在未来的某个时刻它会被写入到内存中（当其他CPU要读取该缓存行的内容时。或者其他CPU要修改该缓存对应的内存中的内容时 当我们要修改变量时，需要等待B-CPU将变量S变为I，也就是等待ACK响应，当A-CPU收到B响应时才能将变量进行修改 以此引入
         </div>
       </a>
 
@@ -240,8 +240,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2023-10-03 21:19" pubdate>
-              2023-10-03
+            <time datetime="2023-06-28 21:21" pubdate>
+              2023-06-28
             </time>
           </div>
         
@@ -257,15 +257,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2023/10/03/hello-world/" target="_self">
-          Hello World
+        <a href="/2023/06/28/%E8%AE%B0SQL%E4%BC%98%E5%8C%96/" target="_self">
+          记SQL优化
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/10/03/hello-world/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/06/28/%E8%AE%B0SQL%E4%BC%98%E5%8C%96/" target="_self">
         <div>
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick
+          起因线上查询接口响应迟缓，达到2s延迟以上，通过生产接口测试，接口响应延时达到5s以上。通过简单接口测试排查得出单表（任务执行表，包含任务执行状态，参数，关联字段）sql查询时间较长。 原因 接口sql涉及表数据量过大（1000W-60多字段，包含temple等大字段） 打印sql，sql分析explain 联合索引字段覆盖较少，导致扫描索引全表后仍进行大量回表查询操作 表数据量过多 order
         </div>
       </a>
 
@@ -273,8 +273,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2023-10-03 16:47" pubdate>
-              2023-10-03
+            <time datetime="2023-06-28 20:55" pubdate>
+              2023-06-28
             </time>
           </div>
         
@@ -290,15 +290,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2023/09/26/%E6%B5%85%E8%B0%88%E5%8D%8F%E7%A8%8B/" target="_self">
-          浅谈协程
+        <a href="/2023/06/15/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%B8%B8%E8%A7%81%E5%AE%9E%E7%8E%B0/" target="_self">
+          分布式锁常见实现
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/09/26/%E6%B5%85%E8%B0%88%E5%8D%8F%E7%A8%8B/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/06/15/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%B8%B8%E8%A7%81%E5%AE%9E%E7%8E%B0/" target="_self">
         <div>
-          什么是协程进程是系统进行资源分配和保护的基本单位，线程是处理器调度和分派的基本单位  进程具有一个独立的执行环境。 进程是程序在计算机上的一次执行活动 。通常情况下，进程拥有一个完整的、私有的基本运行资源集合。特别地，每个进程都有自己的内存空间。 线程有时也被称为轻量级的进程。进程和线程都提供了一个执行环境，但创建一个新的线程比创建一个新的进程需要的资源要少。线程是在进程中存在的，每个进程最少有一
+          实现方式数据库第一种 当我们要锁住某个方法或资源时，我们就在该表中增加一条记录，想要释放锁的时候就删除这条记录。  CREATE TABLE `methodLock` (   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT &#39;主键&#39;,   `method_name` varchar(64) NOT NULL DEFAULT &#39;&#3
         </div>
       </a>
 
@@ -306,8 +306,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2023-09-26 20:55" pubdate>
-              2023-09-26
+            <time datetime="2023-06-15 20:59" pubdate>
+              2023-06-15
             </time>
           </div>
         
@@ -323,15 +323,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2023/09/15/%E6%96%B0%E6%97%B6%E4%BB%A3%E4%B8%8E%E8%80%81%E5%B9%B4%E4%BB%A3%E5%AF%B9%E8%B1%A1%E7%9B%B8%E4%BA%92%E5%BC%95%E7%94%A8%E6%80%8E%E4%B9%88%E5%8A%9E/" target="_self">
-          新时代与老年代对象相互引用怎么办
+        <a href="/2023/06/14/%E5%85%B3%E4%BA%8E%E7%B4%A2%E5%BC%95%E8%A6%86%E7%9B%96%E4%B8%8E%E7%B4%A2%E5%BC%95%E4%B8%8B%E6%8E%A8/" target="_self">
+          关于索引覆盖与索引下推
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/09/15/%E6%96%B0%E6%97%B6%E4%BB%A3%E4%B8%8E%E8%80%81%E5%B9%B4%E4%BB%A3%E5%AF%B9%E8%B1%A1%E7%9B%B8%E4%BA%92%E5%BC%95%E7%94%A8%E6%80%8E%E4%B9%88%E5%8A%9E/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/06/14/%E5%85%B3%E4%BA%8E%E7%B4%A2%E5%BC%95%E8%A6%86%E7%9B%96%E4%B8%8E%E7%B4%A2%E5%BC%95%E4%B8%8B%E6%8E%A8/" target="_self">
         <div>
-          跨代引用JVM的跨代引用问题是指在Java堆内存的不同代之间存在引用关系，导致对象在不同代之间的引用被称为跨代引用。比如：新生代到老年代的引用，老年代到新生代的引用等。 在进行一次MinorGC（YoungGC）的时候，会从GC Root出发，然后进行可达性分析，假如当前正在进行一次Young GC，如果他发现一个对象处于老年代，那么JVM就会中断这条路径。 那么这时候，JVM就会认为只有A和B是
+          索引覆盖 覆盖索引（covering index）指一个查询语句的执行只用从索引中就能够取得，不必从数据表中读取。也可以称之为实现了索引覆盖。  当一条查询语句符合覆盖索引条件时，MySQL只需要通过索引就可以返回查询所需要的数据，这样避免了查到索引后再返回表操作，减少I&#x2F;O提高效率。  如，表covering_index_sample中有一个普通索引 idx_key1_key2(key
         </div>
       </a>
 
@@ -339,8 +339,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2023-09-15 21:15" pubdate>
-              2023-09-15
+            <time datetime="2023-06-14 21:16" pubdate>
+              2023-06-14
             </time>
           </div>
         
@@ -356,15 +356,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2023/08/15/%E9%97%B2%E8%B0%88%E7%9C%8B%E9%97%A8%E7%8B%97%E6%9C%BA%E5%88%B6/" target="_self">
-          闲谈看门狗机制
+        <a href="/2023/06/12/Async%E6%B3%A8%E8%A7%A3%E6%9C%89%E4%BB%80%E4%B9%88%E7%BC%BA%E7%82%B9/" target="_self">
+          Async注解有什么缺点
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/08/15/%E9%97%B2%E8%B0%88%E7%9C%8B%E9%97%A8%E7%8B%97%E6%9C%BA%E5%88%B6/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/06/12/Async%E6%B3%A8%E8%A7%A3%E6%9C%89%E4%BB%80%E4%B9%88%E7%BC%BA%E7%82%B9/" target="_self">
         <div>
-          实现为了避免Redis实现的分布式锁超时，Redisson中引入了watch dog的机制，他可以帮助我们在Redisson实例被关闭前，不断的延长锁的有效期。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364
+          缺点 @Async中关于线程池的使用部分在AsyncExecutionInterceptor中，在这个类中有一个getDefaultExecutor方法， 当我们没有做过自定义线程池的时候，就会用SimpleAsyncTaskExecutor这个线程池。  @Override protected Executor getDefaultExecutor(BeanFactory beanFactory
         </div>
       </a>
 
@@ -372,8 +372,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2023-08-15 21:20" pubdate>
-              2023-08-15
+            <time datetime="2023-06-12 21:14" pubdate>
+              2023-06-12
             </time>
           </div>
         
@@ -389,15 +389,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2023/08/03/%E6%B5%85%E8%B0%88%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" target="_self">
-          浅谈网络安全
+        <a href="/2023/05/30/%E6%B5%85%E8%B0%88%E6%8E%A5%E5%8F%A3%E5%B9%82%E7%AD%89%E9%97%AE%E9%A2%98/" target="_self">
+          浅谈接口幂等问题
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/08/03/%E6%B5%85%E8%B0%88%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/05/30/%E6%B5%85%E8%B0%88%E6%8E%A5%E5%8F%A3%E5%B9%82%E7%AD%89%E9%97%AE%E9%A2%98/" target="_self">
         <div>
-          常见攻击DoS  DoS（拒绝服务，Denial of Service）就是利用合理的服务请求来占用过多的服务资源，从而使合法用户无法得到服务的响应。这是早期非常基本的网络攻击方式。 利用合理的服务请求来占用过多的服务资源，从而使合法用户无法得到服务的响应的行为，就是DoS攻击。  DDoS  DDoS 攻击可以具体分成两种形式：带宽消耗型以及资源消耗型。它们都是透过大量合法或伪造的请求占用大量网
+          解决 解决接口幂等问题，只需要记住一句口令”一锁、二判、三更新”，只要严格遵守这个过程，那么就可以解决并发问题。 一锁：第一步，先加锁。可以加分布式锁、或者悲观锁都可以。但是一定要是一个互斥锁！ 二判：第二步，进行幂等性判断。可以基于状态机、流水表、唯一性索引等等进行重复操作的判断。 三更新：第三步，进行数据的更新，将数据进行持久化。 三步需要严格控制顺序，确保加锁成功后进行数据查询和判断，幂等性
         </div>
       </a>
 
@@ -405,8 +405,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2023-08-03 20:58" pubdate>
-              2023-08-03
+            <time datetime="2023-05-30 21:18" pubdate>
+              2023-05-30
             </time>
           </div>
         
@@ -422,15 +422,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2023/07/15/%E7%9C%8B%E7%9C%8B%E4%BB%80%E4%B9%88%E6%98%AF%E7%8A%B6%E6%80%81%E6%9C%BA/" target="_self">
-          看看什么是状态机
+        <a href="/2023/05/26/HTTP%E7%89%88%E6%9C%AC%E5%8F%91%E5%B1%95/" target="_self">
+          HTTP版本发展
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/07/15/%E7%9C%8B%E7%9C%8B%E4%BB%80%E4%B9%88%E6%98%AF%E7%8A%B6%E6%80%81%E6%9C%BA/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/05/26/HTTP%E7%89%88%E6%9C%AC%E5%8F%91%E5%B1%95/" target="_self">
         <div>
-          状态机在我们日常开发中，我们提到的状态机基本都是有限状态机，用于解决状态相关的问题。有限状态机可以通过状态转换和事件触发来描述程序的行为和状态迁移。 一个状态机通常包含以下几个要素：  状态（States）：代表系统可能处于的各种状态，例如 “已下单”、”已支付”、”已发货” 等。 事件（Events）：触发状态转换的事件，例如 “下单”、”支付”、”发货” 等。 转换（Transitions）：
+          发展历程HTTP是什么 HTTP 是超文本传输协议，HTTP 不是互联网，也不是编程语言，是一种协议。HTTP 通常跑在 TCP&#x2F;IP 协议栈之上，依靠 IP 协议实现寻址和路由、TCP 协议实现可靠数据传输、DNS 协议实现域名查找、SSL&#x2F;TLS 协议实现安全通信。  HTTP 是一个用在计算机世界里的协议。它使用计算机能够理解的语言确立了一种计算机之间交流通信的规范，以及
         </div>
       </a>
 
@@ -438,8 +438,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2023-07-15 21:20" pubdate>
-              2023-07-15
+            <time datetime="2023-05-26 20:58" pubdate>
+              2023-05-26
             </time>
           </div>
         
@@ -455,15 +455,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2023/07/10/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E4%BB%A5%E5%8F%8A%E5%BB%B6%E8%BF%9F%E4%BB%BB%E5%8A%A1/" target="_self">
-          如何实现定时任务以及延迟任务
+        <a href="/2023/05/14/order-by%E8%A6%81%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8/" target="_self">
+          order by要如何使用
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/07/10/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E4%BB%A5%E5%8F%8A%E5%BB%B6%E8%BF%9F%E4%BB%BB%E5%8A%A1/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/05/14/order-by%E8%A6%81%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8/" target="_self">
         <div>
-          定时任务多种实现单点系统  ScheduledExecutorService类： ScheduledExecutorService是Java SE5中新增的一个定时任务执行器，它可以比Timer更精准地执行任务，并支持多个任务并发执行。通过调用ScheduledExecutorService.schedule()或ScheduledExecutorService.scheduleAtFixedRa
+          排序是怎么做的 order by 是做排序的，具体怎么排取决于优化器的选择，如果优化器认为走索引更快，那么就会用索引排序，否则，就会使用filesort (执行计划中extra中提示：using filesort），但是能走索引排序的情况并不多，并且确定性也没有那么强，很多时候，还是走的filesort。 filesort这种排序方式中，如果需要排序的内容比较少，就会基于内存中的sort_buff
         </div>
       </a>
 
@@ -471,8 +471,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2023-07-10 20:56" pubdate>
-              2023-07-10
+            <time datetime="2023-05-14 21:16" pubdate>
+              2023-05-14
             </time>
           </div>
         
@@ -488,15 +488,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2023/07/03/%E8%B0%88%E8%B0%88InnoDB%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7/" target="_self">
-          谈谈InnoDB四大特性
+        <a href="/2023/05/03/FirstBlog/" target="_self">
+          FirstBlog
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/07/03/%E8%B0%88%E8%B0%88InnoDB%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/05/03/FirstBlog/" target="_self">
         <div>
-          Change Buffer 旧版Insert Buffer，只对insert生效，而Change Buffer对CUD都生效 只对非唯一索引生效，在写过程中，先判断数据索引页是否在缓冲池中，如果不在则加入Change Buffer，按一定的频率进行合理地合并，再写回disk中，减少IO带来的性能损耗  Double Write（页副本） Doublewrite缓存是位于系统表空间的存储区域，用来缓
+          记我很喜欢的一句话： Everything will be ok in the end, if not ok, it is not in the end.
         </div>
       </a>
 
@@ -504,41 +504,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2023-07-03 20:57" pubdate>
-              2023-07-03
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2023/07/02/%E5%9F%BA%E4%BA%8E%E6%9C%AC%E5%9C%B0%E6%B6%88%E6%81%AF%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%9C%80%E7%BB%88%E4%B8%80%E8%87%B4%E6%80%A7/" target="_self">
-          基于本地消息表实现最终一致性
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/07/02/%E5%9F%BA%E4%BA%8E%E6%9C%AC%E5%9C%B0%E6%B6%88%E6%81%AF%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%9C%80%E7%BB%88%E4%B8%80%E8%87%B4%E6%80%A7/" target="_self">
-        <div>
-          实现 这个方案的主要思想是将分布式事务拆分为本地事务和消息事务两个部分，本地事务在本地数据库中进行提交或回滚，而消息事务则将消息写入消息中间件中，以实现消息的可靠投递和顺序性。  一般来说的做法是，在发送消息之前，先创建一条本地消息，并且保证写本地业务数据的操作和写本地消息记录的操作在同一个事务中。这样就能确保只要业务操作成功，本地消息一定可以写成功。  然后再基于本地消息，调用MQ发送远程消息。
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-07-02 21:17" pubdate>
-              2023-07-02
+            <time datetime="2023-05-03 17:00" pubdate>
+              2023-05-03
             </time>
           </div>
         
@@ -552,7 +519,7 @@
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
     </span>
   </nav>
 
