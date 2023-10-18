@@ -224,6 +224,72 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2023/07/03/%E8%B0%88%E8%B0%88InnoDB%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7/" target="_self">
+          谈谈InnoDB四大特性
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/07/03/%E8%B0%88%E8%B0%88InnoDB%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7/" target="_self">
+        <div>
+          Change Buffer 旧版Insert Buffer，只对insert生效，而Change Buffer对CUD都生效 只对非唯一索引生效，在写过程中，先判断数据索引页是否在缓冲池中，如果不在则加入Change Buffer，按一定的频率进行合理地合并，再写回disk中，减少IO带来的性能损耗  Double Write（页副本） Doublewrite缓存是位于系统表空间的存储区域，用来缓
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-07-03 20:57" pubdate>
+              2023-07-03
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/07/02/%E5%9F%BA%E4%BA%8E%E6%9C%AC%E5%9C%B0%E6%B6%88%E6%81%AF%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%9C%80%E7%BB%88%E4%B8%80%E8%87%B4%E6%80%A7/" target="_self">
+          基于本地消息表实现最终一致性
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/07/02/%E5%9F%BA%E4%BA%8E%E6%9C%AC%E5%9C%B0%E6%B6%88%E6%81%AF%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%9C%80%E7%BB%88%E4%B8%80%E8%87%B4%E6%80%A7/" target="_self">
+        <div>
+          实现 这个方案的主要思想是将分布式事务拆分为本地事务和消息事务两个部分，本地事务在本地数据库中进行提交或回滚，而消息事务则将消息写入消息中间件中，以实现消息的可靠投递和顺序性。  一般来说的做法是，在发送消息之前，先创建一条本地消息，并且保证写本地业务数据的操作和写本地消息记录的操作在同一个事务中。这样就能确保只要业务操作成功，本地消息一定可以写成功。  然后再基于本地消息，调用MQ发送远程消息。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-07-02 21:17" pubdate>
+              2023-07-02
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2023/06/28/%E5%85%B3%E4%BA%8EMESI%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B/" target="_self">
           关于MESI的一些事
         </a>
@@ -482,44 +548,11 @@
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2023/05/03/FirstBlog/" target="_self">
-          FirstBlog
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/05/03/FirstBlog/" target="_self">
-        <div>
-          记我很喜欢的一句话： Everything will be ok in the end, if not ok, it is not in the end.
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-05-03 17:00" pubdate>
-              2023-05-03
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 

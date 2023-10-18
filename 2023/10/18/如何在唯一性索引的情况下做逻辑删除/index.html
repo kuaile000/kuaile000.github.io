@@ -16,21 +16,21 @@
   <meta name="author" content="kuaile000">
   <meta name="keywords" content="">
   
-    <meta name="description" content="什么是脑裂脑裂是在分布式系统中经常出现的问题之一，它指的是由于网络或节点故障等原因，导致一个分布式系统被分为多个独立的子系统，每个子系统独立运行，无法相互通信，同时认为自己是整个系统的主节点，这就会导致整个系统失去一致性和可用性。 Redis脑裂原因、危害、解决Redis的脑裂问题可能发生在网络分区或者主节点出现问题的时候：  网络分区：网络故障或分区导致了不同子集之间的通信中断。 Master节">
+    <meta name="description" content="前提我们往往在面对接口幂等或者防止消息的重复消费的情况时，无论我们采取什么样的技术操作都需要在数据库层面做一定的唯一性索引来真正的保证我们对于幂等性的控制。 但是，我们对于数据库的删除操作往往是一种逻辑删除的操作，比如将is_deleted变为1等等，在这种情况下我们再往数据库插入数据，然后又删除便有可能导致数据库发生唯一性报错。 解决方案1 物理删除+数据归档 重新制定一张历史记录表 当我们对表">
 <meta property="og:type" content="article">
-<meta property="og:title" content="闲谈Redis脑裂">
-<meta property="og:url" content="http://lzhnet.top/2023/10/03/%E9%97%B2%E8%B0%88Redis%E8%84%91%E8%A3%82/index.html">
+<meta property="og:title" content="如何在唯一性索引的情况下做逻辑删除">
+<meta property="og:url" content="http://lzhnet.top/2023/10/18/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E7%B4%A2%E5%BC%95%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E5%81%9A%E9%80%BB%E8%BE%91%E5%88%A0%E9%99%A4/index.html">
 <meta property="og:site_name" content="LBlog">
-<meta property="og:description" content="什么是脑裂脑裂是在分布式系统中经常出现的问题之一，它指的是由于网络或节点故障等原因，导致一个分布式系统被分为多个独立的子系统，每个子系统独立运行，无法相互通信，同时认为自己是整个系统的主节点，这就会导致整个系统失去一致性和可用性。 Redis脑裂原因、危害、解决Redis的脑裂问题可能发生在网络分区或者主节点出现问题的时候：  网络分区：网络故障或分区导致了不同子集之间的通信中断。 Master节">
+<meta property="og:description" content="前提我们往往在面对接口幂等或者防止消息的重复消费的情况时，无论我们采取什么样的技术操作都需要在数据库层面做一定的唯一性索引来真正的保证我们对于幂等性的控制。 但是，我们对于数据库的删除操作往往是一种逻辑删除的操作，比如将is_deleted变为1等等，在这种情况下我们再往数据库插入数据，然后又删除便有可能导致数据库发生唯一性报错。 解决方案1 物理删除+数据归档 重新制定一张历史记录表 当我们对表">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-10-03T13:19:24.000Z">
-<meta property="article:modified_time" content="2023-10-04T08:59:08.638Z">
+<meta property="article:published_time" content="2023-10-18T12:16:12.000Z">
+<meta property="article:modified_time" content="2023-10-18T12:36:55.423Z">
 <meta property="article:author" content="kuaile000">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>闲谈Redis脑裂 - LBlog</title>
+  <title>如何在唯一性索引的情况下做逻辑删除 - LBlog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="闲谈Redis脑裂"></span>
+            <span id="subtitle" data-typed-text="如何在唯一性索引的情况下做逻辑删除"></span>
           
         </div>
 
@@ -207,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-03 21:19" pubdate>
-          October 3, 2023 pm
+        <time datetime="2023-10-18 20:16" pubdate>
+          October 18, 2023 pm
         </time>
       </span>
     
@@ -219,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k words
+          632 words
         
       </span>
     
@@ -230,7 +230,7 @@
         
         
         
-          13 mins
+          6 mins
         
       </span>
     
@@ -267,49 +267,30 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">闲谈Redis脑裂</h1>
+            <h1 id="seo-header">如何在唯一性索引的情况下做逻辑删除</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="什么是脑裂"><a href="#什么是脑裂" class="headerlink" title="什么是脑裂"></a>什么是脑裂</h3><p>脑裂是在分布式系统中经常出现的问题之一，它指的是由于网络或节点故障等原因，导致一个分布式系统被分为多个独立的子系统，每个子系统独立运行，无法相互通信，同时认为自己是整个系统的主节点，这就会导致整个系统失去一致性和可用性。</p>
-<h3 id="Redis脑裂原因、危害、解决"><a href="#Redis脑裂原因、危害、解决" class="headerlink" title="Redis脑裂原因、危害、解决"></a>Redis脑裂原因、危害、解决</h3><p>Redis的脑裂问题可能发生在网络分区或者主节点出现问题的时候：</p>
-<ul>
-<li>网络分区：网络故障或分区导致了不同子集之间的通信中断。<ul>
-<li>Master节点，哨兵和Slave节点被分割为了两个网络，Master处在一个网络中，Slave库和哨兵在另外一个网络中，此时哨兵发现和Master连不上了，就会发起主从切换，选一个新的Master，这时候就会出现两个主节点的情况</li>
+                <h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>我们往往在面对接口幂等或者防止消息的重复消费的情况时，无论我们采取什么样的技术操作都需要在数据库层面做一定的唯一性索引来真正的保证我们对于幂等性的控制。</p>
+<p>但是，我们对于数据库的删除操作往往是一种逻辑删除的操作，比如将is_deleted变为1等等，在这种情况下我们再往数据库插入数据，然后又删除便有可能导致数据库发生唯一性报错。</p>
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><h4 id="方案1-物理删除-数据归档"><a href="#方案1-物理删除-数据归档" class="headerlink" title="方案1 物理删除+数据归档"></a>方案1 <strong>物理删除+数据归档</strong></h4><ul>
+<li>重新制定一张历史记录表</li>
+<li>当我们对表的删除操作直接使用物理删除，如果是更新或插入操作着对历史记录表进行记录</li>
+<li>我们还可以通过数仓等方式来对每天的数据变化SQL（除了Delete）进行数据同步，时间点我们可以选择在凌晨之类的请求量少的时间，而如果在当天便有删除操作则需要直接进行数据同步</li>
 </ul>
-</li>
-<li>主节点问题：集群中的主节点之间出现问题，导致不同的子集认为它们是正常的主节点。<ul>
-<li>Master节点有问题，哨兵就会开始选举新的主节点，但是在这个过程中，原来的那个Master节点又恢复了，这时候就可能会导致一部分Slave节点认为他是Master节点，而另一部分Slave新选出了一个Master</li>
+<h4 id="方案2-复用一条开通记录-记录开通流水"><a href="#方案2-复用一条开通记录-记录开通流水" class="headerlink" title="方案2 复用一条开通记录+记录开通流水"></a>方案2 <strong>复用一条开通记录+记录开通流水</strong></h4><ul>
+<li>如果是针对用户与某一样数据的情况下，那么用户与产品只会有一条数据的变化，我们便可以制定一张流水表来解决</li>
+<li>流水表正常会多一个stream_type字段，以此来标识数据的状态变化（状态机）</li>
 </ul>
-</li>
+<h4 id="方案3-0都表示逻辑删除"><a href="#方案3-0都表示逻辑删除" class="headerlink" title="方案3 &gt;0都表示逻辑删除"></a>方案3 <strong>&gt;0都表示逻辑删除</strong></h4><ul>
+<li>每次删除之后，is_deleted都+1，is_deleted&#x3D;1表示第一次删除，is_deleted&#x3D;2表示第2次删除</li>
+<li>或者那就是在用户删除的时候，直接把这条service_record的主键（前提需要时自增的ID）设置到is_deleted中</li>
 </ul>
-<p>脑裂问题可能导致以下问题：</p>
-<ul>
-<li>数据不一致：不同子集之间可能对同一数据进行不同的写入，导致数据不一致。</li>
-<li>重复写入：在脑裂解决后，不同子集可能尝试将相同的写入操作应用到主节点上，导致数据重复。</li>
-<li>数据丢失：新选出来的Master会向所有的实例发送slave of命令，让所有实例重新进行全量同步，而全量同步首先就会将实例上的数据先清空，所以在主从同步期间在原来那个Master上执行的命令将会被清空。</li>
+<h4 id="方案4-引入字段"><a href="#方案4-引入字段" class="headerlink" title="方案4 引入字段"></a>方案4 引入字段</h4><ul>
+<li>我们可以在唯一性索引中加一个额外字段，默认0</li>
+<li>当我们删除时可以将时间戳或者数据id赋值给该字段进行逻辑删除</li>
 </ul>
-<p>那么如何防止脑裂的发生呢？</p>
-<ul>
-<li>​	min-slaves-to-write：主库能进行数据同步的最少从库数量；</li>
-<li>min-slaves-max-lag：主从库间进行数据复制时，从库给主库发送 ACK 消息的最大延迟秒数。</li>
-<li>假设我们将 min-slaves-to-write 设置为 1，把 min-slaves-max-lag 设置为 10s。如果Master节点因为某些原因挂了 12s，导致哨兵判断主库客观下线，开始进行主从切换。同时，因为原Master宕机了 12s，没有一个（min-slaves-to-write）从库能和原主库在 10s（ min-slaves-max-lag） 内进行数据复制，这样一来，就因为不满足配置要求，原Master也就再也无法接收客户端请求了。这样一来，主从切换完成后，也只有新主库能接收请求，这样就没有脑裂的发生了。</li>
-<li>但是：<ul>
-<li>假设我们将 min-slaves-to-write 设置为 1，把 min-slaves-max-lag 设置为 10s，并且down-after-milliseconds时间为8s，也就是说，如果8秒连不上主节点，哨兵就会进行主从切换。</li>
-<li>但是，如果主从切换的过程需要5s时间的话，就会有问题。</li>
-<li>Master节点宕机8s时，哨兵判断主节点客观下线，开始进行主从切换，但是这个过程一共需要5s。那如果主从切换过程中，主节点有恢复运行，即第9秒Master恢复了，而min-slaves-max-lag设置为10s那么主节点还是可写的。</li>
-<li>那么就会导致9s~12s这期间如果有客户端写入原Master节点，那么这段时间的数据会等新的Master选出来之后，执行了slaveof之后导致丢失。</li>
-<li>Redis脑裂可以采用min-slaves-to-write和min-slaves-max-lag合理配置尽量规避，但无法彻底解决</li>
-</ul>
-</li>
-</ul>
-<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><p>Zookeeper集群中的脑裂出现的原因通常有以下2种情况：</p>
-<ol>
-<li><strong>网络分区</strong></li>
-<li><strong>主节点宕机</strong></li>
-<li>解决：本质就是通过原子广播的方式，只有得到大多数节点的支持才能成为master，而如果旧master恢复后由于没有大多数节点的支持依旧无法完成写操作</li>
-</ol>
 
                 
               </div>
@@ -327,8 +308,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>闲谈Redis脑裂</div>
-      <div>http://lzhnet.top/2023/10/03/闲谈Redis脑裂/</div>
+      <div>如何在唯一性索引的情况下做逻辑删除</div>
+      <div>http://lzhnet.top/2023/10/18/如何在唯一性索引的情况下做逻辑删除/</div>
     </div>
     <div class="license-meta">
       
@@ -340,7 +321,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>October 3, 2023</div>
+          <div>October 18, 2023</div>
         </div>
       
       
@@ -372,9 +353,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/18/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E7%B4%A2%E5%BC%95%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E5%81%9A%E9%80%BB%E8%BE%91%E5%88%A0%E9%99%A4/" title="如何在唯一性索引的情况下做逻辑删除">
+                      <a href="/2023/10/18/%E8%B0%88%E8%B0%88%E6%B0%B4%E5%B9%B3%E8%B6%8A%E6%9D%83/" title="谈谈水平越权">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">如何在唯一性索引的情况下做逻辑删除</span>
+                        <span class="hidden-mobile">谈谈水平越权</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -382,8 +363,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/03/hello-world/" title="Hello World">
-                        <span class="hidden-mobile">Hello World</span>
+                      <a href="/2023/10/03/%E9%97%B2%E8%B0%88Redis%E8%84%91%E8%A3%82/" title="闲谈Redis脑裂">
+                        <span class="hidden-mobile">闲谈Redis脑裂</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

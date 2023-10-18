@@ -186,7 +186,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Everything will be ok in the end, if not ok, it is not in the end."></span>
+            <span id="subtitle" data-typed-text="An elegant Material-Design theme for Hexo"></span>
           
         </div>
 
@@ -217,6 +217,72 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/10/18/%E8%B0%88%E8%B0%88%E6%B0%B4%E5%B9%B3%E8%B6%8A%E6%9D%83/" target="_self">
+          谈谈水平越权
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/10/18/%E8%B0%88%E8%B0%88%E6%B0%B4%E5%B9%B3%E8%B6%8A%E6%9D%83/" target="_self">
+        <div>
+          什么是水平越权 是指攻击者尝试访问与当前用户具有相同权限的其他用户资源 比如过uid查询用户信息（包括用户手机号、家庭住址等敏感信息），且uid为数据库自增主键。此时攻击者可用自己的uid向下递减或向上递增试探性查询其他用户信息，导致用户信息泄露。 我们需要对攻击者的攻击成本进行放大来进行一定程度的防范  解决方案 参数以post方式提交，攻击者需要抓包才能看到参数 关键参数进行加密混淆（主要手段
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-10-18 20:38" pubdate>
+              2023-10-18
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/10/18/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E7%B4%A2%E5%BC%95%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E5%81%9A%E9%80%BB%E8%BE%91%E5%88%A0%E9%99%A4/" target="_self">
+          如何在唯一性索引的情况下做逻辑删除
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/10/18/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E7%B4%A2%E5%BC%95%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E5%81%9A%E9%80%BB%E8%BE%91%E5%88%A0%E9%99%A4/" target="_self">
+        <div>
+          前提我们往往在面对接口幂等或者防止消息的重复消费的情况时，无论我们采取什么样的技术操作都需要在数据库层面做一定的唯一性索引来真正的保证我们对于幂等性的控制。 但是，我们对于数据库的删除操作往往是一种逻辑删除的操作，比如将is_deleted变为1等等，在这种情况下我们再往数据库插入数据，然后又删除便有可能导致数据库发生唯一性报错。 解决方案1 物理删除+数据归档 重新制定一张历史记录表 当我们对表
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-10-18 20:16" pubdate>
+              2023-10-18
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
 
   <div class="row mx-auto index-card">
     
@@ -482,77 +548,11 @@
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2023/07/03/%E8%B0%88%E8%B0%88InnoDB%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7/" target="_self">
-          谈谈InnoDB四大特性
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/07/03/%E8%B0%88%E8%B0%88InnoDB%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7/" target="_self">
-        <div>
-          Change Buffer 旧版Insert Buffer，只对insert生效，而Change Buffer对CUD都生效 只对非唯一索引生效，在写过程中，先判断数据索引页是否在缓冲池中，如果不在则加入Change Buffer，按一定的频率进行合理地合并，再写回disk中，减少IO带来的性能损耗  Double Write（页副本） Doublewrite缓存是位于系统表空间的存储区域，用来缓
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-07-03 20:57" pubdate>
-              2023-07-03
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2023/07/02/%E5%9F%BA%E4%BA%8E%E6%9C%AC%E5%9C%B0%E6%B6%88%E6%81%AF%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%9C%80%E7%BB%88%E4%B8%80%E8%87%B4%E6%80%A7/" target="_self">
-          基于本地消息表实现最终一致性
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/07/02/%E5%9F%BA%E4%BA%8E%E6%9C%AC%E5%9C%B0%E6%B6%88%E6%81%AF%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%9C%80%E7%BB%88%E4%B8%80%E8%87%B4%E6%80%A7/" target="_self">
-        <div>
-          实现 这个方案的主要思想是将分布式事务拆分为本地事务和消息事务两个部分，本地事务在本地数据库中进行提交或回滚，而消息事务则将消息写入消息中间件中，以实现消息的可靠投递和顺序性。  一般来说的做法是，在发送消息之前，先创建一条本地消息，并且保证写本地业务数据的操作和写本地消息记录的操作在同一个事务中。这样就能确保只要业务操作成功，本地消息一定可以写成功。  然后再基于本地消息，调用MQ发送远程消息。
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-07-02 21:17" pubdate>
-              2023-07-02
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 
