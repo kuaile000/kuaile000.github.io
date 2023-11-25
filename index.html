@@ -224,6 +224,39 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2023/11/25/%E6%8F%90%E9%AB%98%E5%86%99%E6%80%A7%E8%83%BD%E7%9A%84%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/" target="_self">
+          提高写性能的常见方法
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/11/25/%E6%8F%90%E9%AB%98%E5%86%99%E6%80%A7%E8%83%BD%E7%9A%84%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/" target="_self">
+        <div>
+          如何提高写1. 异步  问题 消息丢失 消息溢出 消费过慢   方法 本地消息表：以插入的形式插入本地消息避免锁表 引入缓存： 当我们把消息写到消息管道中后，我们就用cache记录一下他的状态。然后在这个消息真正被消费时，从缓存中删除这个状态。 用户如果发起请求状态的查询。我们可以根据cache中的情况，给用户返回状态。cache中如果还有，就说明请求处理中，cache中如果没有，就说明请求处理完
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-11-25 20:18" pubdate>
+              2023-11-25
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2023/10/18/%E8%B0%88%E8%B0%88%E6%B0%B4%E5%B9%B3%E8%B6%8A%E6%9D%83/" target="_self">
           谈谈水平越权
         </a>
@@ -506,39 +539,6 @@
             <i class="iconfont icon-date"></i>
             <time datetime="2023-07-15 21:20" pubdate>
               2023-07-15
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2023/07/10/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E4%BB%A5%E5%8F%8A%E5%BB%B6%E8%BF%9F%E4%BB%BB%E5%8A%A1/" target="_self">
-          如何实现定时任务以及延迟任务
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/07/10/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E4%BB%A5%E5%8F%8A%E5%BB%B6%E8%BF%9F%E4%BB%BB%E5%8A%A1/" target="_self">
-        <div>
-          定时任务多种实现单点系统  ScheduledExecutorService类： ScheduledExecutorService是Java SE5中新增的一个定时任务执行器，它可以比Timer更精准地执行任务，并支持多个任务并发执行。通过调用ScheduledExecutorService.schedule()或ScheduledExecutorService.scheduleAtFixedRa
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-07-10 20:56" pubdate>
-              2023-07-10
             </time>
           </div>
         
